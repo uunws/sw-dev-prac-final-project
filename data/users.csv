@@ -8,3 +8,8 @@ u105,Eve Davis,085-555-8765,eve@example.com,hashed_pw_eve,user
 u106,Frank White,086-555-3322,frank@example.com,hashed_pw_frank,user
 a202,Super Admin,089-555-0001,super@system.com,hashed_pw_super,admin
 u107,Grace Chen,087-555-7788,grace@example.com,hashed_pw_grace,user
+u108,Harry Miller,088-555-1111,harry@example.com,hashed_pw_harry,user
+u109,Ivy Green,081-555-2222,ivy@example.com,hashed_pw_ivy,user
+u110,Jack Black,082-555-3333,jack@example.com,hashed_pw_jack,user
+u111,Kate Wilson,083-555-4444,kate@example.com,hashed_pw_kate,user
+u112,Leo King,084-555-5555,leo@example.com,hashed_pw_leo,user
