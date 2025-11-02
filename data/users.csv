@@ -1,0 +1,10 @@
+user_id,name,telephone_number,email,password_hash,role
+u101,Alice Smith,081-555-1234,alice@example.com,hashed_pw_alice,user
+u102,Bob Johnson,082-555-5678,bob@example.com,hashed_pw_bob,user
+u103,Charlie Brown,083-555-9012,charlie@example.com,hashed_pw_charlie,user
+a201,Admin User,089-555-0000,admin@system.com,hashed_pw_admin,admin
+u104,David Lee,084-555-4321,david@example.com,hashed_pw_david,user
+u105,Eve Davis,085-555-8765,eve@example.com,hashed_pw_eve,user
+u106,Frank White,086-555-3322,frank@example.com,hashed_pw_frank,user
+a202,Super Admin,089-555-0001,super@system.com,hashed_pw_super,admin
+u107,Grace Chen,087-555-7788,grace@example.com,hashed_pw_grace,user
