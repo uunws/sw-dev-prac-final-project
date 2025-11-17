@@ -33,6 +33,18 @@ app.set('query parser', 'extended');
 //     // });
 // });
 
+// app.get('/providers', async (req, res) => {
+//   const providers = await db.query('SELECT * FROM providers');
+//   res.json(providers.rows);
+// });
+
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:5173', // React dev server
+  credentials: true
+}));
+
+
 // mount routers
 app.use('/api/v1/providers', providers); // so in hospitals.js we do not have to put /api.. anymore
 app.use('/api/v1/auth', auth);
