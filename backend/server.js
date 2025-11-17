@@ -4,10 +4,10 @@ const connectDB = require('./config/db');
 const cookieParser = require('cookie-parser');
 
 // Route files
-const hospitals = require('./routes/hospitals');
+const providers = require('./routes/providers');
 const { connect } = require('mongoose');
 const auth = require('./routes/auth');
-const appointments = require('./routes/appointments');
+const bookings = require('./routes/bookings');
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
@@ -34,9 +34,9 @@ app.set('query parser', 'extended');
 // });
 
 // mount routers
-app.use('/api/v1/hospitals', hospitals); // so in hospitals.js we do not have to put /api.. anymore
+app.use('/api/v1/providers', providers); // so in hospitals.js we do not have to put /api.. anymore
 app.use('/api/v1/auth', auth);
-app.use('/api/v1/appointments', appointments);
+app.use('/api/v1/bookings', bookings);
 
 const PORT = process.env.PORT || 5003; // port from same port as .env
 const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
