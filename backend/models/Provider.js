@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const ProviderSchema = new mongoose.Schema({
     name: {
         type : String,
-        require : [true,'Please add a name'],
+        required : [true,'Please add a name'],
         unique : true,
         trim : true,
         maxlength : [50, 'Name can not be more than 50 characters']
@@ -18,19 +18,27 @@ const ProviderSchema = new mongoose.Schema({
     },
     province : {
         type : String,
-        requried : [true, 'Please add a province']
+        required : [true, 'Please add a province']
     },
     postalcode : {
         type : String,
-        require: [true, 'Please add a postalcode'],
+        required: [true, 'Please add a postalcode'],
         maxlength: [5, 'Postal Code can not be more than 5 digits']
     },
     tel : {
-        typr : String
+        type : String
     },
     region : {
         type: String,
-        require : [true, 'Please add a region']
+        required : [true, 'Please add a region']
+    },
+    lat: {
+        type: Number,
+        required: [true, 'Please add latitude']
+    },
+    lng: {
+        type: Number,
+        required: [true, 'Please add longitude']
     }
 },{
     toJSON: {virtuals:true},

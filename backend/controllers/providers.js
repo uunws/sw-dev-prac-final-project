@@ -2,7 +2,7 @@ const Provider = require('../models/Provider');
 const Booking = require('../models/Booking');
 
 //@desc     Get all providers
-//@route    GET /api/vi/providers
+//@route    GET /api/v1/providers
 //@access   Public
 exports.getProviders= async (req,res,next)=>{
 
