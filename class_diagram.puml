@@ -1,0 +1,45 @@
+@startuml
+class App {
+  - providers: Array<Provider>
+  - bookings: Array<Booking>
+  - users: Array<User>
+  - loading: Boolean
+  - error: String
+  + useEffect()
+  + render()
+}
+
+class Provider {
+  + _id: String
+  + name: String
+  + address: String
+  + district: String
+  + province: String
+  + postalcode: String
+  + tel: String
+  + lat: Number
+  + lng: Number
+}
+
+class Booking {
+  + _id: String
+  + userId: String
+  + providerId: String
+  + date: Date
+  + status: String
+}
+
+class User {
+  + _id: String
+  + name: String
+  + email: String
+  + tel: String
+}
+
+App "1" o-- "*" Provider : uses
+App "1" o-- "*" Booking : uses
+App "1" o-- "*" User : uses
+Booking "*" --> "1" Provider : for
+Booking "*" --> "1" User : by
+
+@enduml
