@@ -1,15 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import './App.css';
-
-const providers = [
-  { id: 1, name: 'CrashOut Rental 1', lat: 13.7466, lng: 100.5328, address: 'Pathum Wan, Bangkok' },
-  { id: 2, name: 'CrashOut Rental 2', lat: 13.7211, lng: 100.5320, address: 'Sathorn, Bangkok' },
-  { id: 3, name: 'CrashOut Rental 3', lat: 13.7768, lng: 100.5794, address: 'Huai Khwang, Bangkok' },
-  { id: 4, name: 'CrashOut Rental 4', lat: 13.7690, lng: 100.6520, address: 'Bang Kapi, Bangkok' },
-  { id: 5, name: 'CrashOut Rental 5', lat: 13.8005, lng: 100.5530, address: 'Chatuchak, Bangkok' },
-  { id: 6, name: 'CrashOut Rental 6', lat: 13.7852, lng: 100.5383, address: 'Phaya Thai, Bangkok' },
-];
 
 const containerStyle = {
   width: '100%',
@@ -22,7 +13,32 @@ const center = {
 };
 
 const App = () => {
-  const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY'; // ⚠️ Replace with your real key
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
+  const [providers, setProviders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:5003/api/v1/providers') // make sure port matches your backend
+      .then(res => res.json())
+      .then(response => {
+        if (response.success && Array.isArray(response.data)) {
+          setProviders(response.data);
+        } else {
+          setError('Failed to load providers');
+        }
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load providers:', err);
+        setError('Failed to load providers');
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Loading providers...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="App">
@@ -30,8 +46,8 @@ const App = () => {
 
       <ul>
         {providers.map(p => (
-          <li key={p.id}>
-            <b>{p.name}</b> — {p.address}
+          <li key={p._id}>
+            <b>{p.name}</b>  {p.address}, {p.district}, {p.province}, {p.postalcode}, {p.tel}
           </li>
         ))}
       </ul>
@@ -39,7 +55,11 @@ const App = () => {
       <LoadScript googleMapsApiKey={apiKey}>
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12}>
           {providers.map(p => (
-            <Marker key={p.id} position={{ lat: p.lat, lng: p.lng }} title={p.name} />
+            <Marker
+              key={p._id}
+              position={{ lat: Number(p.lat), lng: Number(p.lng) }}
+              title={p.name}
+            />
           ))}
         </GoogleMap>
       </LoadScript>
